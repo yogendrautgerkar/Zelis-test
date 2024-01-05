@@ -1,0 +1,58 @@
+<style>
+  html,
+  .header {
+    background-color: #23004b;
+    height: 200px;
+  }
+  .mat-mdc-raised-button:not(:disabled) {
+    background-color: #23004b;
+    color: #ffffff;
+    padding: 8px 16px;
+  }
+  .header {
+    padding: 56px 100px;
+  }
+  .header h1 {
+    color: #ffffff;
+    font-size: 72px;
+    font-weight: 900;
+    padding-top: 60px;
+  }
+  .main {
+    padding: 56px 100px;
+  }
+  .mat-mdc-menu-item {
+    width: 168px;
+  }
+</style>
+<div class="header">
+  <img src="../assets/Zelis_Logo.svg" alt="" />
+  <h1>Menu</h1>
+</div>
+<main class="main">
+  <button
+    mat-raised-button
+    class="menuTrigger"
+    [matMenuTriggerFor]="items_menu"
+  >
+    Menu
+  </button>
+  <mat-menu #items_menu="matMenu">
+    <button
+      class="test"
+      mat-menu-item
+      *ngFor="let item of items"
+      (click)="selectmenu($event, item)"
+      [ngStyle]="{ background: item.selected ? '#D9D9D9' : '' }"
+    >
+      <mat-icon color="{{ item.selected ? 'dark' : '' }}">{{
+        item.selected ? "star" : "star_border_outline_blank"
+      }}</mat-icon>
+      <span [ngStyle]="{ color: item.selected ? '#320FFF' : '' }">
+        {{ item.name }}
+      </span>
+    </button>
+  </mat-menu>
+</main>
+
+<router-outlet></router-outlet>
